@@ -8,7 +8,9 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            transactions: []
+            transactions: [],
+            incomeTransactions: [],
+            expenseTransactions: []
         }
     }
 
@@ -16,14 +18,25 @@ class App extends React.Component {
         fetch('/api/transactions').then(function (res) {
             return res.json();
         }).then((data) => {
-            this.setState({ transactions: data })
+            const income = data.filter(transaction => transaction.type === 'income');
+            const expense = data.filter(transaction => transaction.type === 'expense');
+
+            this.setState({
+                transactions: data,
+                incomeTransactions: income,
+                expenseTransactions: expense
+            });
         });
     }
 
     render() {
         return (
             <div className="App">
-                <Table transactions={this.state.transactions} />
+                <h3>Income</h3>
+                <Table transactions={this.state.incomeTransactions} />
+
+                <h3>Expense</h3>
+                <Table transactions={this.state.expenseTransactions} />
             </div>
         );
     }

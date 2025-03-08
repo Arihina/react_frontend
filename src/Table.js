@@ -16,7 +16,6 @@ class Table extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>Type</th>
               <th>Date</th>
               <th>Amount</th>
               <th>Category</th>
@@ -26,7 +25,6 @@ class Table extends React.Component {
           <tbody>
             {transactions.map(transaction => (
               <tr key={transaction._id}>
-                <td>{transaction.type}</td>
                 <td>{this.formatDate(transaction.date)}</td>
                 <td>{transaction.amount}</td>
                 <td>{transaction.category}</td>
