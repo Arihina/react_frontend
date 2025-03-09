@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "./Table";
+import AddForm from "./AddForm";
 
 import './App.css';
 
@@ -37,6 +38,9 @@ class App extends React.Component {
 
                 <h3>Expense</h3>
                 <Table transactions={this.state.expenseTransactions} />
+
+                <h3>Add new transaction</h3>
+                <AddForm />
             </div>
         );
     }
