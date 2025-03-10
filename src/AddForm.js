@@ -63,6 +63,8 @@ class AddForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
+                <h3>Add new transaction</h3>
+                
                 <div>
                     <label>Amount:</label>
                     <input type="number" id="amount" name="amount" value={this.state.amount} onChange={this.handleChange} required />
