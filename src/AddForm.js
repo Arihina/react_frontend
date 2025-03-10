@@ -1,7 +1,8 @@
 import React from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 
 
-class AddForm extends React.Component {
+class AddFormInner extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -57,6 +58,8 @@ class AddForm extends React.Component {
                 if (this.props.onSubmit) {
                     this.props.onSubmit();
                 }
+
+                this.props.history('/');
             });
     }
 
@@ -89,10 +92,18 @@ class AddForm extends React.Component {
                     <textarea id="description" name="description" value={this.state.description} onChange={this.handleChange} />
                 </div>
 
-                <button type="submit">Add</button>
+                <button type="submit">Add</button><br></br>
+
+                <NavLink to='/'>Back to transactions</NavLink>
             </form>
         );
     }
+}
+
+const AddForm = (props) => {
+    return (
+        <AddFormInner {...props} history={useNavigate()} />
+    )
 }
 
 export default AddForm;

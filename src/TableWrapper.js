@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import Table from "./Table"
 
@@ -36,6 +37,8 @@ class TableWrapper extends React.Component {
 
                 <h3>Expense</h3>
                 <Table transactions={this.state.expenseTransactions} />
+
+                <NavLink to='/add'>Add transaction</NavLink>
             </div>
         )
     }
