@@ -8,7 +8,7 @@ class Table extends React.Component {
   }
 
   render() {
-    const { transactions } = this.props;
+    const { transactions, onDelete } = this.props;
 
     return (
       <div className="Table">
@@ -19,6 +19,7 @@ class Table extends React.Component {
               <th>Amount</th>
               <th>Category</th>
               <th>Descriprion</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -28,6 +29,9 @@ class Table extends React.Component {
                 <td>{transaction.amount}</td>
                 <td>{transaction.category}</td>
                 <td>{transaction.description}</td>
+                <td>
+                  <button onClick={() => onDelete(transaction._id)}>Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
