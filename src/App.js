@@ -5,6 +5,7 @@ import { Provider, connect } from 'react-redux';
 import TableWrapper from "./TableWrapper";
 import AddForm from "./AddForm";
 import EditForm from "./EditForm";
+import GraphPage from './StatisticsTransactions.js';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ class App extends React.Component {
                         <Route path="/" element={<TableWrapper />} />
                         <Route path="/add" element={<AddForm />} />
                         <Route path="/edit/:id" element={<EditForm />} />
+                        <Route path="/statistics/transactions" element={<GraphPage />} />
                     </Routes>
                 </Router>
             </div>

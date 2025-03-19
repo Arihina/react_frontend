@@ -53,7 +53,8 @@ class TableWrapper extends React.Component {
                 <h3>Expense</h3>
                 <Table transactions={expenseTransactions} onDelete={this.deleteTransaction} />
 
-                <NavLink to="/add">Add transaction</NavLink>
+                <NavLink to="/add">Add transaction</NavLink><br></br>
+                <NavLink to="/statistics/transactions">To transactions statistics</NavLink>
             </div>
         );
     }
