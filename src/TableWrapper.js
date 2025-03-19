@@ -1,17 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
-import Table from "./Table"
+import Table from "./Table";
+import { transactionAddAll, transactionDelete } from './actions';
 
 
 class TableWrapper extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            transactions: [],
-            incomeTransactions: [],
-            expenseTransactions: []
-        }
     }
 
     componentDidMount() {
@@ -19,39 +16,53 @@ class TableWrapper extends React.Component {
     }
 
     getTransactions = () => {
-        fetch('/api/transactions')
-            .then(res => res.json())
+        fetch("/api/transactions")
+            .then((res) => res.json())
             .then((data) => {
-                const income = data.filter(transaction => transaction.type === 'income');
-                const expense = data.filter(transaction => transaction.type === 'expense');
-
-                this.setState({
-                    transactions: data,
-                    incomeTransactions: income,
-                    expenseTransactions: expense
-                });
+                this.props.dispatch(transactionAddAll(data));
             });
-    }
+    };
 
     deleteTransaction = (id) => {
+        console.log("deleteTransaction called with ID:", id);
         fetch(`/api/transactions/${id}`, {
-            method: 'DELETE',
-        }).then(res => this.getTransactions())
-    }
+            method: "DELETE",
+        })
+            .then(res => {
+                this.props.dispatch(transactionDelete(id));
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+            });
+    };
 
     render() {
+
+        const incomeTransactions = this.props.transactions.filter(
+            (transaction) => transaction.type === "income"
+        );
+        const expenseTransactions = this.props.transactions.filter(
+            (transaction) => transaction.type === "expense"
+        );
+
         return (
             <div>
                 <h3>Income</h3>
-                <Table transactions={this.state.incomeTransactions} onDelete={this.deleteTransaction}/>
+                <Table transactions={incomeTransactions} onDelete={this.deleteTransaction} />
 
                 <h3>Expense</h3>
-                <Table transactions={this.state.expenseTransactions} onDelete={this.deleteTransaction}/>
+                <Table transactions={expenseTransactions} onDelete={this.deleteTransaction} />
 
-                <NavLink to='/add'>Add transaction</NavLink>
+                <NavLink to="/add">Add transaction</NavLink>
             </div>
-        )
+        );
     }
 }
 
-export default TableWrapper;
+const mapStateToProps = (state) => {
+    return {
+        transactions: state.transactions,
+    };
+};
+
+export default connect(mapStateToProps)(TableWrapper);

@@ -1,5 +1,8 @@
 import React from "react";
 import { useNavigate, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { transactionAdd } from './actions';
 
 
 class AddFormInner extends React.Component {
@@ -47,13 +50,9 @@ class AddFormInner extends React.Component {
         })
             .then((response) => response.json())
             .then((data) => {
-                this.setState({
-                    amount: "",
-                    date: "",
-                    type: "expense",
-                    category: "",
-                    description: "",
-                });
+                this.props.dispatch(transactionAdd(
+                    data._id, data.amount, data.date, data.type, data.category, data.description
+                ));
 
                 if (this.props.onSubmit) {
                     this.props.onSubmit();
@@ -67,7 +66,7 @@ class AddFormInner extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <h3>Add new transaction</h3>
-                
+
                 <div>
                     <label>Amount:</label>
                     <input type="number" id="amount" name="amount" value={this.state.amount} onChange={this.handleChange} required />
@@ -106,4 +105,4 @@ const AddForm = (props) => {
     )
 }
 
-export default AddForm;
+export default connect()(AddForm);

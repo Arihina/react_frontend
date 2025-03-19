@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider, connect } from 'react-redux';
 
 import TableWrapper from "./TableWrapper";
 import AddForm from "./AddForm";
@@ -11,6 +12,7 @@ import './App.css';
 class App extends React.Component {
     render() {
         return (
+            <Provider store={this.props.store}>
             <div className="App">
                 <Router>
                     <Routes>
@@ -20,8 +22,9 @@ class App extends React.Component {
                     </Routes>
                 </Router>
             </div>
+            </Provider>
         );
     }
 }
 
-export default App;
+export default connect()(App);
