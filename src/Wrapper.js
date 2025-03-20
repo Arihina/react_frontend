@@ -6,7 +6,7 @@ import Table from "./Table";
 import { transactionAddAll, transactionDelete } from './actions';
 
 
-class TableWrapper extends React.Component {
+class Wrapper extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -54,7 +54,8 @@ class TableWrapper extends React.Component {
                 <Table transactions={expenseTransactions} onDelete={this.deleteTransaction} />
 
                 <NavLink to="/add">Add transaction</NavLink><br></br>
-                <NavLink to="/statistics/transactions">To transactions statistics</NavLink>
+                <NavLink to="/statistics/transactions">To transactions statistics</NavLink><br></br>
+                <NavLink to="/statistics/categories">To categories statistics</NavLink>
             </div>
         );
     }
@@ -66,4 +67,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(TableWrapper);
+export default connect(mapStateToProps)(Wrapper);
