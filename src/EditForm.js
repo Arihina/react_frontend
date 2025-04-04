@@ -21,7 +21,7 @@ const EditForm = () => {
             });
     }, [id]);
 
-    const change = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setTransaction(prev => ({
             ...prev,
@@ -29,7 +29,7 @@ const EditForm = () => {
         }));
     };
 
-    const submit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         const updatedData = {
@@ -59,14 +59,14 @@ const EditForm = () => {
     return (
         <div>
             <h2>Edit Transaction</h2>
-            <form onSubmit={submit}>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label>Amount:</label>
                     <input
                         type="number"
                         name="amount"
                         value={transaction.amount}
-                        onChange={change}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -76,7 +76,7 @@ const EditForm = () => {
                         type="date"
                         name="date"
                         value={transaction.date.split('T')[0]}
-                        onChange={change}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -85,7 +85,7 @@ const EditForm = () => {
                     <select
                         name="type"
                         value={transaction.type}
-                        onChange={change}
+                        onChange={handleChange}
                         required
                     >
                         <option value="income">Income</option>
@@ -98,7 +98,7 @@ const EditForm = () => {
                         type="text"
                         name="category"
                         value={transaction.category}
-                        onChange={change}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -107,7 +107,7 @@ const EditForm = () => {
                     <textarea
                         name="description"
                         value={transaction.description}
-                        onChange={change}
+                        onChange={handleChange}
                         required
                     />
                 </div>
