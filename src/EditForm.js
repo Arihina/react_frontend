@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, NavLink } from 'react-router-dom';
 
 
 const EditForm = () => {
@@ -111,8 +111,12 @@ const EditForm = () => {
                         required
                     />
                 </div>
-                <button type="submit">Edit</button>
+                <button style={{ backgroundColor: '#343a40', border: 'none', color: '#ffffff', borderRadius: '5px', padding: '5px 10px' }}
+                    type="submit">Edit</button>
             </form>
+
+            <NavLink style={{ display: 'inline-block', backgroundColor: '#343a40', color: '#ffffff', border: 'none', borderRadius: '5px', padding: '10px 15px', textDecoration: 'none', margin: '10px 0' }}
+                to='/'>Back to transactions</NavLink>
         </div>
     );
 };

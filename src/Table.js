@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 
 
-function Table({ transactions, onDelete }) {
+function Table({ style, transactions, onDelete }) {
   const navigate = useNavigate();
 
   const formatDate = (dateString) => {
@@ -16,7 +16,7 @@ function Table({ transactions, onDelete }) {
 
   return (
     <div className="Table">
-      <table>
+      <table style={style}>
         <thead>
           <tr>
             <th>Date</th>
@@ -34,7 +34,8 @@ function Table({ transactions, onDelete }) {
               <td>{transaction.category}</td>
               <td>{transaction.description}</td>
               <td>
-                <button onClick={(e) => { e.stopPropagation(); onDelete(transaction._id) }}>Delete</button>
+                <button style={{ backgroundColor: '#343a40', border: 'none', color: '#ffffff', borderRadius: '5px', padding: '5px 10px' }}
+                  onClick={(e) => { e.stopPropagation(); onDelete(transaction._id) }}>Delete</button>
               </td>
             </tr>
           ))}

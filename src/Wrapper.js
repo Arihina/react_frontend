@@ -47,15 +47,23 @@ class Wrapper extends React.Component {
 
         return (
             <div>
-                <h3>Income</h3>
-                <Table transactions={incomeTransactions} onDelete={this.deleteTransaction} />
+                <h3>Transactions</h3>
+                <div className="table-container">
+                    <div className="table-wrapper">
+                        <h4>Income</h4>
+                        <Table style={{ backgroundColor: '#d4edda', border: '1px solid #c3e6cb' }}
+                            transactions={incomeTransactions} onDelete={this.deleteTransaction} />
+                    </div>
+                    <div className="table-wrapper">
+                        <h4>Expense</h4>
+                        <Table style={{ backgroundColor: '#f8d7da', border: '1px solid #f5c6cb' }}
+                            transactions={expenseTransactions} onDelete={this.deleteTransaction} />
+                    </div>
+                </div>
 
-                <h3>Expense</h3>
-                <Table transactions={expenseTransactions} onDelete={this.deleteTransaction} />
-
-                <NavLink to="/add">Add transaction</NavLink><br></br>
-                <NavLink to="/statistics/transactions">To transactions statistics</NavLink><br></br>
-                <NavLink to="/statistics/categories">To categories statistics</NavLink>
+                <NavLink className="nav-link-button" to="/add">Add transaction</NavLink><br />
+                <NavLink className="nav-link-button" to="/statistics/transactions">To transactions statistics</NavLink><br />
+                <NavLink className="nav-link-button" to="/statistics/categories">To categories statistics</NavLink>
             </div>
         );
     }

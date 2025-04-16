@@ -10,7 +10,7 @@ class GraphPage extends React.Component {
             <div>
                 <h1>Graph</h1>
                 <Graph />
-                <NavLink to='/'>Back</NavLink>
+                <NavLink className="nav-link-button" to='/'>Back</NavLink>
             </div>
         )
     }

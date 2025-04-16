@@ -9,8 +9,8 @@ class ChartPage extends React.Component {
         return (
             <div>
                 <h1>Chart</h1>
-                <Chart />
-                <NavLink to='/'>Back</NavLink>
+                    <Chart />
+                <NavLink className="nav-link-button" to='/'>Back</NavLink>
             </div>
         )
     }
